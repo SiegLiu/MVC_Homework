@@ -26,5 +26,12 @@ namespace MVC_Homework.Controllers
 
             return View();
         }
+
+        public ActionResult KeepAccounts()
+        {
+            ViewBag.Message = "記帳";
+
+            return View();
+        }
     }
 }
