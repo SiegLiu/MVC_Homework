@@ -44,24 +44,25 @@
     <br />
     <div>
         <table class="table table-responsive">
-            <tr><td>#</td><td>類別</td><td>日期</td><td>金額</td></tr>
+            <tr><td>#</td><td>類別</td><td>日期</td><td>金額(元)</td></tr>
             @{
                 Random rand = new Random();
                 decimal u1, u2;
                 decimal mean = 2000;
-                decimal stdDev = 1000;
+                decimal stdDev = 2000;
                 for (int i = 0; i <= 100; i++)
                 {
                     u1 = (decimal)(1.0 - rand.NextDouble());
                     u2 = (decimal)(1.0 - rand.NextDouble());
                     decimal randStdNormal = (decimal)(Math.Sqrt(-2.0 * Math.Log((double)u1)) * Math.Sin(2.0 * Math.PI * (double)u2));
                     decimal randNormal = mean + stdDev * randStdNormal;
-                    int amount = (int)randNormal;
+                    int amount = Math.Abs((int)randNormal);
+                    string strAmount = amount.ToString("#,0");
                     <tr>
                         <td>@i</td>
-                        <td>收入</td>
+                        <td>@((randNormal < 0)? "支出" : "收入")</td>
                         <td>@DateTime.Now.Date.AddDays(-@i).ToShortDateString()</td>
-                        <td>@amount</td>
+                        <td>@strAmount</td>
                     </tr>
                 }
             }
