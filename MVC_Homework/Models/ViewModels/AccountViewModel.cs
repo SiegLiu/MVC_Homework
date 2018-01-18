@@ -15,6 +15,6 @@ namespace MVC_Homework.Models.ViewModels
         public DateTime billdate { get; set; }
 
         [Display(Name = "金額（元）")]
-        public int amount { get; set; }
+        public decimal amount { get; set; }
     }
 }
