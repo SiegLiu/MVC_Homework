@@ -15,7 +15,7 @@
         {
             <tr>
                 <th class="text-left">@(i++)</th>
-                <td class="text-center">@item.category</td>
+                <td class="text-center">@(@item.category == "0" ? "收入" : "支出")</td>
                 <td class="text-center">@item.billdate.ToString("yyyy-MM-dd")</td>
                 <td class="text-right">@item.amount.ToString("#,0")</td>
             </tr>
