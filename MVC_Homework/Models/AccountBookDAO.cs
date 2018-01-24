@@ -28,5 +28,28 @@ namespace MVC_Homework.Models
             }
             return result;
         }
+
+        public int Insert(AccountViewModel AccountBook)
+        {
+            const string sql = @"INSERT INTO AccountBook(Id, Categoryyy, Amounttt, Dateee, Remarkkk) 
+                                 Values (NEWID(), @category, @amount, @billdate, '')";
+            using (var conn = new SqlConnection(this.ConnectionString))
+            {
+                try
+                {
+                    return conn.Execute(sql, new
+                    {
+                        category = AccountBook.category,
+                        amount = AccountBook.amount,
+                        billdate = AccountBook.billdate
+                    });
+                }
+                catch (Exception)
+                {
+                    //TODO 增加LOG
+                    throw;
+                }
+            }
+        }
     }
 }
