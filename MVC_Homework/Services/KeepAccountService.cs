@@ -17,7 +17,6 @@ namespace MVC_Homework.Services
 
         public void Add (AccountViewModel accountbook)
         {
-            accountbook.billdate = DateTime.Now;
             _dao.Insert(accountbook);
         }
 

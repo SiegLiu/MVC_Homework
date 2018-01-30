@@ -19,7 +19,18 @@ namespace MVC_Homework.Controllers
 
         public ActionResult KeepAccounts()
         {
-            //return View(_KeepAccountSvc.GetAllAccount());
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem()
+            {
+                Value = "0",
+                Text = "支出",
+            });
+            items.Add(new SelectListItem()
+            {
+                Value = "1",
+                Text = "收入",
+            });
+            ViewBag.Category = items;
             return View();
         }
 
@@ -34,15 +45,16 @@ namespace MVC_Homework.Controllers
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "category, amount, billdate")] AccountViewModel AccountBook)
+        public ActionResult KeepAccounts([Bind(Include = "Id,Category,Amount,Billdate,Remark")] AccountViewModel AccountBook)
         {
             if (ModelState.IsValid)
             {
                 //AccountBook.Id = Guid.NewGuid();
                 _KeepAccountSvc.Add(AccountBook);
-                return RedirectToAction("Index");
+                
             }
-            return View(AccountBook);
+            //return View(AccountBook);
+            return RedirectToAction("KeepAccounts");
         }
     }
 }

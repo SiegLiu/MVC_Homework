@@ -21,7 +21,7 @@ namespace MVC_Homework.Models
         public List<AccountViewModel> GetAllAccount()
         {
             var result = new List<AccountViewModel>();            
-            const string sql = "SELECT Categoryyy AS category, Dateee AS billdate, Amounttt AS amount FROM AccountBook";
+            const string sql = "SELECT Category, Amount, Billdate, Remark FROM AccountBook ORDER BY Billdate DESC";
             using (var conn = new SqlConnection(this.ConnectionString))
             {
                 result = conn.Query<AccountViewModel>(sql).ToList();
@@ -31,17 +31,18 @@ namespace MVC_Homework.Models
 
         public int Insert(AccountViewModel AccountBook)
         {
-            const string sql = @"INSERT INTO AccountBook(Id, Categoryyy, Amounttt, Dateee, Remarkkk) 
-                                 Values (NEWID(), @category, @amount, @billdate, '')";
+            const string sql = @"INSERT INTO AccountBook(Id, Category, Amount, Billdate, Remark) 
+                                 Values (NEWID(), @category, @amount, @billdate, @remark)";
             using (var conn = new SqlConnection(this.ConnectionString))
             {
                 try
                 {
                     return conn.Execute(sql, new
                     {
-                        category = AccountBook.category,
-                        amount = AccountBook.amount,
-                        billdate = AccountBook.billdate
+                        category = AccountBook.Category,
+                        amount = AccountBook.Amount,
+                        billdate = AccountBook.Billdate,
+                        remark = AccountBook.Remark
                     });
                 }
                 catch (Exception)
