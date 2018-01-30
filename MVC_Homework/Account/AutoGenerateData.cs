@@ -25,9 +25,9 @@ namespace MVC_Homework.Account
                 //string strAmount = amount.ToString("#,0");
                 AccountViewModel fakeData = new AccountViewModel
                 {
-                    category = (randNormal < 0) ? "支出" : "收入",
-                    billdate = DateTime.Now.Date.AddDays(-i),
-                    amount = amount
+                    Category = (randNormal < 0) ? "支出" : "收入",
+                    Billdate = DateTime.Now.Date.AddDays(-i),
+                    Amount = amount
                 };
                 listFakeData.Add(fakeData);
             }

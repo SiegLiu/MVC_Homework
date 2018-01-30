@@ -4,9 +4,9 @@
     <thead>
         <tr>
             <th class="text-left">#</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.category)</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.billdate)</th>
-            <th class="text-right">@Html.DisplayNameFor(model => model.amount)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.Category)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.Billdate)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.Amount)</th>
         </tr>
     </thead>
     @{
@@ -15,9 +15,9 @@
         {
             <tr>
                 <th class="text-left">@(i++)</th>
-                <td class="text-center">@(@item.category == "0" ? "收入" : "支出")</td>
-                <td class="text-center">@item.billdate.ToString("yyyy-MM-dd")</td>
-                <td class="text-right">@item.amount.ToString("#,0")</td>
+                <td class="text-center">@(@item.Category == "0" ? "收入" : "支出")</td>
+                <td class="text-center">@item.Billdate.ToString("yyyy-MM-dd")</td>
+                <td class="text-right">@item.Amount.ToString("#,0")</td>
             </tr>
         }
     }
