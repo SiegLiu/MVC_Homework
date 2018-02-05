@@ -16,7 +16,7 @@
         {
             <tr>
                 <th class="text-left">@(i++)</th>
-                <td class="@(item.Category=="0" ? "text-center text-danger" : "text-center text-info")">@(@item.Category == "0" ? "支出" : "收入")</td>
+                @AccountCategoryColor.DisplayAccountCategoryColor(@item.Category)
                 <td class="text-center">@item.Billdate.ToString("yyyy-MM-dd")</td>
                 <td class="text-right">@item.Amount.ToString("#,0")</td>
                 <td class="text-right">@item.Remark</td>

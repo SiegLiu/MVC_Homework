@@ -1,0 +1,11 @@
+﻿@helper DisplayAccountCategoryColor(string Category)
+{
+if (Category == "0")
+{
+        <td class="text-center text-danger">支出</td>
+}
+else if (Category == "1")
+{
+        <td class="text-center text-info">收入</td>
+}
+}
