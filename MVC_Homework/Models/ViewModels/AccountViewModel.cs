@@ -21,12 +21,12 @@ namespace MVC_Homework.Models.ViewModels
 
         [Required]
         [DataType(DataType.Date)]
-        [RemotePlus("ValidateDateLessOrEqual", "Valid", "", ErrorMessage = "「日期」不得大於今天")]
+        [RemotePlus("ValidateDateLessOrEqual", "Valid", "", ErrorMessage = "「{0}」不得大於今天")]
         [Display(Name = "日期")]
         public DateTime Billdate { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "「備註」最多輸入100個字元。", MinimumLength = 1)]
+        [StringLength(100, ErrorMessage = "「{0}」最多輸入{1}個字元。", MinimumLength = 1)]
         [Display(Name = "備註")]
         public string Remark { get; set; }
     }
