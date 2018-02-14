@@ -21,7 +21,7 @@ namespace MVC_Homework.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("HomeworkDB", throwIfV1Schema: false)
         {
         }
 
