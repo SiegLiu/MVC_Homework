@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<MVC_Homework.Models.ViewModels.AccountViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table table-hover" style="table-layout:fixed;">
+    <thead>
+        <tr>
+            <th class="text-left">#</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.Category)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.Billdate)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.Amount)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.Remark)</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Billdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { area = "Admin", Id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { Id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

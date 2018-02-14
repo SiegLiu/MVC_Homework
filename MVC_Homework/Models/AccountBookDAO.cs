@@ -20,8 +20,8 @@ namespace MVC_Homework.Models
 
         public List<AccountViewModel> GetAllAccount()
         {
-            var result = new List<AccountViewModel>();            
-            const string sql = "SELECT Category, Amount, Billdate, Remark FROM AccountBook ORDER BY Billdate DESC";
+            var result = new List<AccountViewModel>();
+            const string sql = "SELECT Id, Category, Amount, Billdate, Remark FROM AccountBook ORDER BY Billdate DESC";
             using (var conn = new SqlConnection(this.ConnectionString))
             {
                 result = conn.Query<AccountViewModel>(sql).ToList();
@@ -44,6 +44,70 @@ namespace MVC_Homework.Models
                         billdate = AccountBook.Billdate,
                         remark = AccountBook.Remark
                     });
+                }
+                catch (Exception)
+                {
+                    //TODO 增加LOG
+                    throw;
+                }
+            }
+        }
+        public int Update(AccountViewModel AccountBook)
+        {
+            const string sql = @"UPDATE AccountBook SET Category=@category, Amount=@amount, Billdate=@billdate, remark=@remark WHERE Id=@id";
+            using (var conn = new SqlConnection(this.ConnectionString))
+            {
+                try
+                {
+                    return conn.Execute(sql, new
+                    {
+                        id = AccountBook.Id,
+                        category = AccountBook.Category,
+                        amount = AccountBook.Amount,
+                        billdate = AccountBook.Billdate,
+                        remark = AccountBook.Remark
+                    });
+                }
+                catch (Exception)
+                {
+                    //TODO 增加LOG
+                    throw;
+                }
+            }
+        }
+
+        public int Delete(AccountViewModel AccountBook)
+        {
+            const string sql = @"DELETE FROM AccountBook WHERE Id=@id";
+            using (var conn = new SqlConnection(this.ConnectionString))
+            {
+                try
+                {
+                    return conn.Execute(sql, new
+                    {
+                        id = AccountBook.Id
+                    });
+                }
+                catch (Exception)
+                {
+                    //TODO 增加LOG
+                    throw;
+                }
+            }
+        }
+
+        public AccountViewModel GetSingle(Guid Id)
+        {
+            const string sql = @"SELECT * FROM AccountBook WHERE Id=@id";
+            using (var conn = new SqlConnection(this.ConnectionString))
+            {
+                try
+                {
+                    var result = conn.Query<AccountViewModel>(sql, new
+                    {
+                        id = Id
+                    }).FirstOrDefault();
+                    return result;
                 }
                 catch (Exception)
                 {

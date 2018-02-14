@@ -20,6 +20,21 @@ namespace MVC_Homework.Services
             _dao.Insert(accountbook);
         }
 
+        public void Edit (AccountViewModel accountbook)
+        {
+            _dao.Update(accountbook);
+        }
+
+        public void Delete(AccountViewModel accountbook)
+        {
+            _dao.Delete(accountbook);
+        }
+
+        public AccountViewModel GetSingle(Guid Id)
+        {
+            return _dao.GetSingle(Id);
+        }
+
         public IEnumerable<AccountViewModel> GetAllAccount()
         {
             return _dao.GetAllAccount();

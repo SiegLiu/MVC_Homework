@@ -10,6 +10,8 @@ namespace MVC_Homework.Models.ViewModels
 {
     public class AccountViewModel
     {
+        public System.Guid Id { get; set; }
+
         [Required]
         [Display(Name = "類別")]
         public string Category { get; set; }
