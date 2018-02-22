@@ -46,7 +46,30 @@ namespace MVC_Homework.Areas.Admin.Controllers
         public ActionResult Edit([Bind(Include = "Id,Category,Amount,Billdate,Remark")] AccountViewModel AccountBook)
         {
             _KeepAccountSvc.Edit(AccountBook);
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public ActionResult Delete(Guid id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            AccountViewModel AccountBook = _KeepAccountSvc.GetSingle(id);
+            if (AccountBook == null)
+            {
+                return HttpNotFound();
+            }
             return View(AccountBook);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed([Bind(Include = "Id,Category,Amount,Billdate,Remark")] AccountViewModel AccountBook)
+        {   
+            _KeepAccountSvc.Delete(AccountBook);
+            return RedirectToAction("Index");
         }
     }
 }
