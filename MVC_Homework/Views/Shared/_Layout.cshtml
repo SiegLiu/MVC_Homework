@@ -22,13 +22,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("帳本列表", "BillPage", "Home")</li>
-                    <li>@Html.ActionLink("我的記帳本(WithService)", "KeepAccounts", "KeepAccountWithService")</li>
-                    <li>@Html.ActionLink("帳本列表(WithService)", "BillPage", "KeepAccountWithService")</li>
+                    <li>@Html.ActionLink("帳本列表", "BillPage", "Home", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("我的記帳本(WithService)", "KeepAccounts", "KeepAccountWithService", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("帳本列表(WithService)", "BillPage", "KeepAccountWithService", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("帳本編輯(WithService)", "Index", "KeepAccountWithService", new { area = "Admin" }, new { })</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("RSS", "Index", "Feeds")</li>
+                    <li>@Html.ActionLink("關於", "About", "Home", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("連絡方式", "Contact", "Home", new { area = "" }, new { })</li>
+                    <li>@Html.ActionLink("RSS", "Index", "Feeds", new { area = "" }, new { })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
