@@ -18,11 +18,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("我的記帳本", "KeepAccounts", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("我的記帳本", "KeepAccounts", "KeepAccountWithService", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("帳本列表", "BillPage", "Home", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("我的記帳本(WithService)", "KeepAccounts", "KeepAccountWithService", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("帳本列表(WithService)", "BillPage", "KeepAccountWithService", new { area = "" }, new { })</li>
                     <li>@Html.ActionLink("帳本編輯(WithService)", "Index", "KeepAccountWithService", new { area = "Admin" }, new { })</li>
