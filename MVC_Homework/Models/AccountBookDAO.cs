@@ -1,5 +1,7 @@
 ﻿using Dapper;
 using MVC_Homework.Models.ViewModels;
+using PagedList;
+using PagedList.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -19,7 +21,7 @@ namespace MVC_Homework.Models
         }
 
         public List<AccountViewModel> GetAllAccount()
-        {
+        {   
             var result = new List<AccountViewModel>();
             const string sql = "SELECT Id, Category, Amount, Billdate, Remark FROM AccountBook ORDER BY Billdate DESC";
             using (var conn = new SqlConnection(this.ConnectionString))
@@ -27,6 +29,20 @@ namespace MVC_Homework.Models
                 result = conn.Query<AccountViewModel>(sql).ToList();
             }
             return result;
+        }
+
+        public IPagedList<AccountViewModel> GetAllAccount(int? page)
+        {
+            //var pageNumber = page ?? 1;
+            var pageIndex = page.HasValue ? page.Value < 1 ? 1 : page.Value : 1;
+
+            var result = new List<AccountViewModel>();
+            const string sql = "SELECT Id, Category, Amount, Billdate, Remark FROM AccountBook ORDER BY Billdate DESC";
+            using (var conn = new SqlConnection(this.ConnectionString))
+            {
+                result = conn.Query<AccountViewModel>(sql).ToList();
+            }
+            return result.ToPagedList(pageIndex, 10);
         }
 
         public int Insert(AccountViewModel AccountBook)

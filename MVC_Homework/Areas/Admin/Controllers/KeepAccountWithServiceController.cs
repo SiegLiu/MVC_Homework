@@ -20,9 +20,21 @@ namespace MVC_Homework.Areas.Admin.Controllers
 
         // GET: Admin/KeepAccountWithService
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(_KeepAccountSvc.GetAllAccount());
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem()
+            {
+                Value = "0",
+                Text = "支出",
+            });
+            items.Add(new SelectListItem()
+            {
+                Value = "1",
+                Text = "收入",
+            });
+            ViewBag.Category = items;
+            return View(_KeepAccountSvc.GetAllAccount(page));
         }
 
         [Authorize]

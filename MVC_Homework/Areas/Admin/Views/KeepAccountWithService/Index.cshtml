@@ -1,7 +1,9 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model IEnumerable<MVC_Homework.Models.ViewModels.AccountViewModel>
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<MVC_Homework.Models.ViewModels.AccountViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -16,31 +18,28 @@
     <thead>
         <tr>
             <th class="text-left">#</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.Category)</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.Billdate)</th>
-            <th class="text-right">@Html.DisplayNameFor(model => model.Amount)</th>
-            <th class="text-right">@Html.DisplayNameFor(model => model.Remark)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.FirstOrDefault().Category)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.FirstOrDefault().Billdate)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Amount)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Remark)</th>
+            <th></th>
         </tr>
     </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Billdate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Remark)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { area = "Admin", Id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
-            </td>
-        </tr>
+    @{
+        int i = 0;
+        foreach (var item in Model)
+        {
+            <tr>
+                <th class="text-left">@(i++)</th>
+                @AccountCategoryColor.DisplayAccountCategoryColor(@item.Category)
+                <td>@Html.DisplayFor(modelItem => item.Billdate)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { area = "Admin", Id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { Id = item.Id })
+                </td>
+            </tr>
+        }
     }
 </table>
+@Html.PagedListPager(list: Model, generatePageUrl: page => Url.Action("Index", new { page }))

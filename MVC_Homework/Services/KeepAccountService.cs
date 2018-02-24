@@ -39,5 +39,10 @@ namespace MVC_Homework.Services
         {
             return _dao.GetAllAccount();
         }
+
+        public IEnumerable<AccountViewModel> GetAllAccount(int? page)
+        {
+            return _dao.GetAllAccount(page);
+        }
     }
 }

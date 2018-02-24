@@ -1,13 +1,15 @@
-﻿@model IEnumerable<MVC_Homework.Models.ViewModels.AccountViewModel>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<MVC_Homework.Models.ViewModels.AccountViewModel>
 
 <table class="table table-hover" style="table-layout:fixed;">
     <thead>
         <tr>
             <th class="text-left">#</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.Category)</th>
-            <th class="text-center">@Html.DisplayNameFor(model => model.Billdate)</th>
-            <th class="text-right">@Html.DisplayNameFor(model => model.Amount)</th>
-            <th class="text-right">@Html.DisplayNameFor(model => model.Remark)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.FirstOrDefault().Category)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.FirstOrDefault().Billdate)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Amount)</th>
+            <th class="text-right">@Html.DisplayNameFor(model => model.FirstOrDefault().Remark)</th>
         </tr>
     </thead>
     @{
@@ -24,4 +26,4 @@
         }
     }
 </table>
-
+@Html.PagedListPager(list: Model, generatePageUrl: page => Url.Action("BillPage", new { page }))

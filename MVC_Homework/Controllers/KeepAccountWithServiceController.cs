@@ -35,9 +35,9 @@ namespace MVC_Homework.Controllers
         }
 
         // GET: KeepAccountWithService
-        public ActionResult BillPage()
+        public ActionResult BillPage(int? page)
         {
-            return View(_KeepAccountSvc.GetAllAccount());
+            return View(_KeepAccountSvc.GetAllAccount(page));
         }
 
         // POST: AccountBook/Create
