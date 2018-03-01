@@ -14,6 +14,13 @@ namespace MVC_Homework
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "SkillTree",
+                url: "SkillTree/{controller}/{action}/{id}",
+                defaults: new { controller = "KeepAccountWithService", action = "KeepAccounts", id = UrlParameter.Optional },
+                namespaces: new[] { "MVC_Homework.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
