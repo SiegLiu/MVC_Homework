@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace MVC_Homework.Areas.Admin.Controllers
 {
+    [Authorize]
     public class KeepAccountWithServiceController : Controller
     {
         private readonly KeepAccountService _KeepAccountSvc;
@@ -19,7 +20,6 @@ namespace MVC_Homework.Areas.Admin.Controllers
         }
 
         // GET: Admin/KeepAccountWithService
-        [Authorize]
         public ActionResult Index(int? page)
         {
             List<SelectListItem> items = new List<SelectListItem>();
@@ -36,8 +36,7 @@ namespace MVC_Homework.Areas.Admin.Controllers
             ViewBag.Category = items;
             return View(_KeepAccountSvc.GetAllAccount(page));
         }
-
-        [Authorize]
+        
         public ActionResult Edit(Guid id)
         {
             if (id == null)
@@ -51,8 +50,7 @@ namespace MVC_Homework.Areas.Admin.Controllers
             }
             return View(AccountBook);
         }
-
-        [Authorize]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Category,Amount,Billdate,Remark")] AccountViewModel AccountBook)
@@ -60,8 +58,7 @@ namespace MVC_Homework.Areas.Admin.Controllers
             _KeepAccountSvc.Edit(AccountBook);
             return RedirectToAction("Index");
         }
-
-        [Authorize]
+        
         public ActionResult Delete(Guid id)
         {
             if (id == null)
