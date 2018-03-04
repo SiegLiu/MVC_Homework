@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="alternate" type="application/rss+xml" title="我的Rss" href="../Feeds" />
+    <link rel="alternate" type="application/rss+xml" title="我的Rss" @Url.Action("Index", "Feeds", new { area = "" }) />
     <title>@ViewBag.Title - 我的記帳本</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
